@@ -129,7 +129,7 @@ public class S3StoreServiceImpl implements StoreService {
         String day = date.split("T")[0];
         String credential = accessKey + "/" + day + "/" + region + "/s3/aws4_request";
         String policy = this.generatePolicy(bucketName, expiration, date, credential);
-        String signature = calculateSignature(policy, day, accessKey, region);
+        String signature = calculateSignature(policy, day, secretKey, region);
         List<KeyAndValueResDto> formFields = new ArrayList<>();
         formFields.add(new KeyAndValueResDto("key", fileKey));
         formFields.add(new KeyAndValueResDto("policy", policy));
